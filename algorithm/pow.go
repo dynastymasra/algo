@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+/**
+Ref: https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+*/
 func main() {
 	fmt.Println("2 power 5 is ", power(2, 5))
 }

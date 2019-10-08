@@ -12,10 +12,9 @@ func missingNumber(arr []int) int {
 	size := len(arr) + 1
 	total := size * (size + 1) / 2
 
-	var a int
 	for _, i := range arr {
-		a += i
+		total -= i
 	}
 
-	return total - a
+	return total
 }

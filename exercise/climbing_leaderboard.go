@@ -1,15 +1,8 @@
 package exercise
 
-import (
-	"sort"
-)
-
 func ClimbingLeaderBoard(scores []int, personScores []int) []int {
 	var leaderBoard, scoreGroup []int
 	ranks := make(map[int]int)
-
-	sort.Sort(sort.Reverse(sort.IntSlice(scores)))
-	sort.Ints(personScores)
 
 	highestScore := scores[0]
 	lowestScore := scores[len(scores)-1]

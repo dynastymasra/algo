@@ -1,8 +1,15 @@
 package exercise
 
+import (
+	"sort"
+)
+
 func ClimbingLeaderBoard(scores []int, personScores []int) []int {
 	var leaderBoard, scoreGroup []int
 	ranks := make(map[int]int)
+
+	sort.Sort(sort.Reverse(sort.IntSlice(scores)))
+	sort.Ints(personScores)
 
 	highestScore := scores[0]
 	lowestScore := scores[len(scores)-1]
@@ -38,7 +45,11 @@ func ClimbingLeaderBoard(scores []int, personScores []int) []int {
 		}
 
 		flag := binarySearch(scoreGroup, score)
-		leaderBoard = append(leaderBoard, ranks[flag])
+		if score < flag {
+			leaderBoard = append(leaderBoard, ranks[flag]+1)
+		} else {
+			leaderBoard = append(leaderBoard, ranks[flag])
+		}
 	}
 
 	return leaderBoard

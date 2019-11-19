@@ -18,7 +18,9 @@ func Test_GCD(t *testing.T) {
 func Test_GCD_GO(t *testing.T) {
 	gcd1 := basic.GoGCD(54, 24)
 	gcd2 := basic.GoGCD(252, 105)
+	gcd3 := basic.GoGCD(18, 27)
 
 	assert.Equal(t, int64(6), gcd1)
 	assert.Equal(t, int64(21), gcd2)
+	assert.Equal(t, int64(9), gcd3)
 }

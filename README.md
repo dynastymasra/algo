@@ -1,2 +1,2 @@
-# algo
+# Algo
 Golang exercise and example algorithm

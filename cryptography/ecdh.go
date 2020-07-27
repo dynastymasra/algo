@@ -51,6 +51,7 @@ func main() {
 
 	end := time.Now().UTC()
 	delta := end.Sub(start)
+
 	fmt.Println("Start time = ", start)
 	fmt.Println("End time = ", end)
 	fmt.Println("Delta time = ", delta)

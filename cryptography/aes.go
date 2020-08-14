@@ -3,11 +3,9 @@ package main
 import (
 	"crypto/aes"
 	"crypto/cipher"
-	"crypto/rand"
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"io"
 	"time"
 )
 
@@ -59,14 +57,18 @@ func encrypt() (string, error) {
 
 	// creates a new byte array the size of the nonce
 	// which must be passed to Seal
-	nonce := make([]byte, gcm.NonceSize())
-	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
-		return "", err
-	}
+	// Never use more than 2^32 random nonces with a given key because of the risk of a repeat.
+	//nonce := make([]byte, gcm.NonceSize())
+	//if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+	//	return "", err
+	//}
+	// Use same nonce of want to generate same hash
+	nonce, _ := hex.DecodeString("5e01f4efe08db2eca5000000")
 
 	fmt.Println("Text to Encrypt =", string(text))
-	ciphertext := fmt.Sprintf("%x", gcm.Seal(nonce, nonce, text, nil))
+	ciphertext := hex.EncodeToString(gcm.Seal(nonce, nonce, text, nil))
 	fmt.Println("Encryption with AES-256 =", ciphertext)
+	fmt.Println("Encryption with AES-256 Nonce =", hex.EncodeToString(nonce))
 
 	end := time.Now().UTC()
 
